@@ -24,7 +24,7 @@ mongoose
   // deuxieme then 
   .then(() => {
     //Need to write the Recipe.create(); to access the base de donnees
-    Recipe.create({})
+    Recipe.create({title:'Pattes', level:'Amateur', ingredients:['blé', 'sel'], cusine:'',dishType:'', image:'',duration:'',created:''})
     .then( () => {
       console.log(`the title of the recipe is: ${Recipe.title}`);
       // on insert une recipt dans la bdd
@@ -40,3 +40,12 @@ mongoose
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+ 
+  // Troisieme then
+
+  
+
+   // console.log(`The title of the recipe is :${}`);
+    // Run your code here, after you have insured that the connection was made
+ 
+ 

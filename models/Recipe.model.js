@@ -18,9 +18,7 @@ const recipeSchema = new Schema({
   dishType:{
   type:String
   },
-  image:{
-    type:String
-  },
+
   image:{
     type:String,
     default: 'https://images.media-allrecipes.com/images/75131.jpg'
