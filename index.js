@@ -25,3 +25,24 @@ mongoose
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+/*Recipe.create({
+  title: 'test'
+  } 
+)
+  .then(function (myNewRecipe) {
+    console.log('new recipe created', myNewRecipe)
+  })
+  .catch(err => console.log(err))*/
+
+Recipe.insertMany(data)
+.then(function (myNewRecipe) {
+    console.log('new recipe created', myNewRecipe)
+  })
+  .catch(err => console.log(err))
+  
+setInterval((Recipe.updateOne({title: 'Rigatoni alla Genovese'},{duration: 100})
+  .then(function(updateRecipe){
+    console.log('recipe updated!',updateRecipe)
+  })
+  .catch(err => console.log(err))),3000)
