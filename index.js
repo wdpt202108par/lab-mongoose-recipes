@@ -17,7 +17,7 @@ mongoose
   .then(self => {
     console.log(`Connected to the database: "${self.connection.name}"`);
     // Before adding any recipes to the database, let's remove all existing ones
-    return Recipe.deleteMany()
+    /*return Recipe.deleteMany()*/
   })
   .then(() => {
     // Run your code here, after you have insured that the connection was made
@@ -26,7 +26,8 @@ mongoose
     console.error('Error connecting to the database', error);
   });
 
-/*Recipe.create({
+//Iteration 2 - Create random documents
+  /*Recipe.create({
   title: 'test'
   } 
 )
@@ -35,14 +36,23 @@ mongoose
   })
   .catch(err => console.log(err))*/
 
-Recipe.insertMany(data)
+//Iteration 3 - Create documents from data.json
+/*Recipe.insertMany(data)
 .then(function (myNewRecipe) {
     console.log('new recipe created', myNewRecipe)
   })
-  .catch(err => console.log(err))
-  
-setInterval((Recipe.updateOne({title: 'Rigatoni alla Genovese'},{duration: 100})
+  .catch(err => console.log(err))*/
+
+//Iteration 4 - Update 'Rigatoni alla Genovese' document
+/*Recipe.updateOne({title: 'Rigatoni alla Genovese'},{duration: 100})
   .then(function(updateRecipe){
     console.log('recipe updated!',updateRecipe)
   })
-  .catch(err => console.log(err))),3000)
+  .catch(err => console.log(err))*/
+
+//Iteration 5 - Delete 'Carrot Cake' document
+  Recipe.deleteOne({title: 'Carrot Cake'})
+  .then(function(deleteRecipe){
+  console.log('recipe deleted!', deleteRecipe)
+})
+.catch(err => console.log(err))
