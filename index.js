@@ -6,8 +6,7 @@ const Recipe = require('./models/Recipe.model');
 const data = require('./data');
 
 const MONGODB_URI = 'mongodb://localhost:27017/recipe-app';
-
-// Connection to the database "recipe-app"
+// const cakeRecipe = {title:'Cake', level:'Easy Peasy', ingredients:['flour', 'eggs', 'sugar'], cuisine:'french', dishType:'dessert',duration:15, creator:'Cindy'}
 mongoose
   .connect(MONGODB_URI, {
     useCreateIndex: true,
@@ -20,7 +19,12 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
+    // Recipe.create(cakeRecipe)
+    //   .then(console.log(cakeRecipe.title))
+    //   .catch(err => console.log('oops', err));
+    Recipe.insertMany(data)
+      .then(data.map(el=>console.log(el.title)))
+      .catch(err => console.log('oops', err));
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
