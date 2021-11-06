@@ -22,9 +22,10 @@ mongoose
   .then(() => {
     // Run your code here, after you have insured that the connection was made
     // insérer notre Recip
-    const data = { "title": "tarte aux pommes", ingredients:['pommes', 'pates brisée']}
-    Recipe.create(data)
-    .then(recipe => console.log('la tarte est prête', recipe))
+    const data = require('./data');
+    //{ "title": "tarte aux pommes", ingredients:['pommes', 'pates brisée']}
+    Recipe.insertMany(data)
+    .then(recipe => console.log('title', recipe))
     .catch(error => console.log("error lors de l'insertion d'un recip"))
   })
   .catch(error => {
