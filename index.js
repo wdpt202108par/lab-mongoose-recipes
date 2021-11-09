@@ -21,6 +21,28 @@ mongoose
   })
   .then(() => {
     // Run your code here, after you have insured that the connection was made
+   
+    //
+    // ITERATION 2 CREATION D'UNE RECIPE TARTE AUX POMMES 
+    //
+    //const data = { "title": "tarte aux pommes", ingredients:['pommes', 'pates brisée']}
+    //Recipe.create(data)
+    //.then(recipe => console.log('la tarte est prête', recipe))
+    //
+
+    //
+    //ITERATION 3 INSERTION DES RECETTES data.json
+    //
+
+    const data = require('./data');
+
+    Recipe.insertMany(data)
+    .then(recipe => console.log('title', recipe))
+    .catch(error => console.log("error lors de l'insertion d'un recip"))
+
+    const query = { title: "Rigatoni alla Genovese"},{duration: 220 T};
+    Recipe.findOneAndUpdate(query, { duration: '100' }, options, callback)
+
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
