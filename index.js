@@ -21,6 +21,68 @@ mongoose
     // Before adding any recipes to the database, let's remove all existing ones
     return Recipe.deleteMany()
   })
+
+  .then(() => {
+    const createRecipe = async () => {
+      try {
+        const newRecipe = await Recipe.create({
+          title: "Asian Glazed Chicken Thighs",
+          level: "Amateur Chef",
+          ingredients: [
+            "1/2 cup rice vinegar",
+            "5 tablespoons honey",
+            "1/3 cup soy sauce (such as Silver Swan®)",
+            "1/4 cup Asian (toasted) sesame oil",
+            "3 tablespoons Asian chili garlic sauce",
+            "3 tablespoons minced garlic",
+            "salt to taste",
+            "8 skinless, boneless chicken thighs",
+          ],
+          cuisine: "Asian",
+          dishType: "main_course",
+          image:
+            "https://images.media-allrecipes.com/userphotos/720x405/815964.jpg",
+          duration: 40,
+          creator: "Chef LePapu",
+        });
+        console.log(newRecipe.title);
+      } catch (err) {
+        console.log("err", err);
+      }
+    };
+  // create recipe
+  const createManyRecipes = async () => {
+    try {
+      const newRecipes = await Recipe.insertMany(data);
+      // console.log(newRecipes)
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+
+  return createManyRecipes();
+})
+.then(() => {
+  const updateDuration = async (name, newDuration) => {
+    try {
+      const updatedRecipe = await Recipe.findOneAndUpdate(
+        { title: name },
+        { duration: newDuration },
+        { new: true }
+      );
+      console.log(updatedRecipe);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+
+  return updateDuration("Rigatoni alla Genovese", 100);
+})
+
+
+
+  /*
+// tryouts for the 2eme then, but not wokrimng
   // deuxieme then 
   .then(() => {
     //Need to write the Recipe.create(); to access the base de donnees
@@ -31,21 +93,12 @@ mongoose
       // console.log ...
     }).catch((error) => {
       console.log(`Error lors de l'insertion de recipe`, error)
-
     })
-
+*/
    // console.log(`The title of the recipe is :${}`);
     // Run your code here, after you have insured that the connection was made
-  })
-  .catch(error => {
-    console.error('Error connecting to the database', error);
-  });
- 
-  // Troisieme then
 
   
 
    // console.log(`The title of the recipe is :${}`);
     // Run your code here, after you have insured that the connection was made
- 
- 
