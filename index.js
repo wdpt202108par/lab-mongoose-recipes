@@ -44,12 +44,39 @@ mongoose
   .then(() => {
     // Iteration 3
     // Importation d'un tableau de recettes via data.json aves Model.insertMany
-  Recipe.create(data)
-    .then(function () {
-      console.log(`Nouvelles recettes importées : ${data.map(function (el) {return el.title})}`)
-    })
-    .catch(error => console.log('Error in importation of recipes', error))
+    Recipe.create(data)
+      .then(function () {
+       console.log(`Nouvelles recettes importées : ${data.map(function (el) {return el.title})}`)
+      })
+      .catch(error => console.log('Error in importation of recipes', error))
+  })
+  .then(() => {
+  //Iteration 4
+  // Mise à jour d'une recette
+    Recipe.updateOne({title: 'Rigatoni alla Genovese'}, {duration: 100})
+      .then(function () {
+        console.log('La recette a été correctement modifiée')
+      })
+      .catch(error => console.log('Erreur dans la modification de la recette', error))
+  })
+  .then(() => {
+// Iteration 5
+// Suppression de la recette du Carrot Cake
+    Recipe.deleteOne({title: 'Carrot Cake'})
+      .then(function () {
+         console.log('La recette a été correctement supprimée')
+      })
+      .catch(error => console.log('Erreur dans la suppression de la recette', error))
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+// Iteration 6
+// Fermeture de la database
+process.on('SIGINT', () => {
+  mongoose.connection.close( () => {
+   console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
